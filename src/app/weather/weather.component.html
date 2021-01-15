@@ -1,0 +1,22 @@
+<label>Enter the city name to get the weather info.</label><br /><br />
+<input type="text" name="name" class="form-control" required minlength="3" pattern="[a-zA-Z][a-zA-Z ]+" #name="ngModel"
+    [(ngModel)]="cityname"><br /><br />
+<div *ngIf="name.invalid && (name.dirty || name.touched)">
+    <div *ngIf="name.errors.required" style="color: red;">
+        City Name is required.
+    </div>
+    <div *ngIf="name.errors.minlength" style="color: red;">
+        City Name must be at least 3 characters long.
+    </div>
+</div>
+<button type="submit" [disabled]="!cityname" (click)="getWeather()">Submit</button><br /><br />
+
+<div *ngIf="weatherInfo">
+    <label>City Name - </label>{{weatherInfo.name}}<br /><br />
+    <label>Feels Like - </label>{{weatherInfo.main.feels_like}}<br /><br />
+    <label>humidity - </label>{{weatherInfo.main.humidity}}<br /><br />
+    <label>Pressure - </label>{{weatherInfo.main.pressure}}<br /><br />
+    <label>Temperature - </label>{{weatherInfo.main.temp}}<br /><br />
+    <label>Max Temp - </label>{{weatherInfo.main.temp_max}}<br /><br />
+    <label>Min Temp - </label>{{weatherInfo.main.temp_min}}<br /><br />
+</div>
